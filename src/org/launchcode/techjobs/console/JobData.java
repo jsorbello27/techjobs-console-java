@@ -7,10 +7,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -43,6 +40,9 @@ public class JobData {
                 values.add(aValue);
             }
         }
+        //this is where our sort method was added to return the list in alaphebetical order
+
+        Collections.sort(values);
 
         return values;
     }
@@ -51,6 +51,7 @@ public class JobData {
 
         // load data, if not already loaded
         loadData();
+
 
         return allJobs;
     }
@@ -72,12 +73,13 @@ public class JobData {
         loadData();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
-
+         //for each row in allJobs
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
+            //this is where added toLowerCase method to be case insensitive
 
-            if (aValue.contains(value)) {
+            if (aValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }
         }
@@ -128,11 +130,10 @@ public class JobData {
     public static ArrayList<HashMap<String,String>> findByValue(String value) {
 
         loadData();
-
+        //This is creating an arrayList of jobs, where each hashMap is a single job
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
         for (HashMap<String, String> row : allJobs) {
-
             for (String input : row.values()) {
                 if (input.toLowerCase().contains(value.toLowerCase())) {
                     if (!jobs.contains(value)) {

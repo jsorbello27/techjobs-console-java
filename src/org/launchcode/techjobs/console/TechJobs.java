@@ -113,19 +113,19 @@ public class TechJobs {
     // Print a list of jobs
     //To do this, you’ll need to iterate over an ArrayList of jobs.
     // Each job is itself a HashMap.
-    // While you can get each of the items out of the HashMap using the known keys (employer, location, etc.),
-    // think instead about creating a nested loop to loop over each HashMap.
-    // If a new field is added to the job records, this approach will print out the new field without any updates to printJobs.
-    //jobs is what the arraylist is called
+    // where the method printJobs is used, they are using JobData as the parameter
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
         if (someJobs.isEmpty()) {
             System.out.println("No jobs found.");
         } else {
+            //iterate over someJobs(JobData)
             for (HashMap<String, String> aJob : someJobs) {
                 System.out.println("*****");
                 for (String jobKey : aJob.keySet()) {
                     System.out.println(jobKey + " : " + aJob.get(jobKey));
+
                 }
+                System.out.println("*****");
             }
         }
     }
